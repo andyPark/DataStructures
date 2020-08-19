@@ -27,7 +27,7 @@ def heap_sort(arr):
         heappush(h, v)
     return [heappop(h) for i in range(len(h))]
 
-# Helper Methods
+# Helper Methods (not exported)
 def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
 

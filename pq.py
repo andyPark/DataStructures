@@ -2,6 +2,13 @@ import heapq
 import time
 from DataStructures.sort import merge_sort
 
+class IPriorityQueue:
+    def push(self, item): # insert an element into the queue
+        pass
+    
+    def pop(self): # return the highest priority element and remove it from the queue
+        pass
+
 class BadPriorityQueue:
     def __init__(self):
         self._queue = []
@@ -13,21 +20,21 @@ class BadPriorityQueue:
         min_i = len(self._queue)
         min_value = float('inf')
         for i in range(len(self._queue)):
-            if self._queue[i][0] < min_value:
+            if self._queue[i] < min_value:
                 min_i = i
-                min_value = self._queue[i][0]
-        return self._queue.pop(min_i)[-1]
+                min_value = self._queue[i]
+        return self._queue.pop(min_i)
     
 class SortPriorityQueue:
     def __init__(self):
         self._queue = []
     
     def push(self, item):
-        self._queue.append(item)
+        self._queue.append(-1 * item)
         self._queue = merge_sort(self._queue)
     
     def pop(self):
-        return self._queue.pop()
+        return -1 * self._queue.pop()
 
 class GoodPriorityQueue:
     def __init__(self):
@@ -40,16 +47,11 @@ class GoodPriorityQueue:
         return heapq.heappop(self._queue)
 
 """
-q = GoodPriorityQueue()
-start_time = time.time()
-q.push(Item('foo'), 1)
-q.push(Item('bar'), 5)
-q.push(Item('spam'), 4)
-q.push(Item('grok'), 2)
-print(q.pop())
-print(q.pop())
-print(q.pop())
-print(q.pop())
-end_time = time.time()
-print("Total Elapsed Time: {0}".format((end_time - start_time) * 100000))
+bpq = pq.BadPriorityQueue()
+bpq.push(5)
+bpq.push(3)
+bpq.push(2)
+bpq.push(4)
+bpq.push(1)
+bpq.pop()
 """
